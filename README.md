@@ -1,5 +1,5 @@
-# Float-to-Integer Grayscale Image Conversion (C + x86-64 ASM)
----
+# Float-to-Integer Grayscale Image Conversion
+
 ## Project Overview
 
 This project demonstrates the conversion of grayscale images represented as floating-point values (`float`, 0.0–1.0) into 8-bit unsigned integers (`uint8_t`, 0–255) using a combination of C and x86-64 assembly language.
