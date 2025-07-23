@@ -2,6 +2,9 @@ section .data
 scaleFactor dd 255.0    ; constant 255.0 for conversion (i = f * 255.0)
 
 section .text
+bits 64
+default rel
+
 global imgCvtGrayFloatToInt
 
 ; void imgCvtGrayFloatToInt(float* inputImage, uint8_t* outputImage, int width, int height)
@@ -34,7 +37,7 @@ loopConversion:
     ; Load float pixel into xmm0
     movss xmm0, dword [rsi]
     mulss xmm0, xmm1              ; xmm0 = pixel * 255.0
-    cvtss2si eax, xmm0            ; eax = (int)(pixel * 255.0)
+    cvttss2si eax, xmm0            ; eax = (int)(pixel * 255.0) + convert with truncate
 
     ; Clamp to [0, 255]
     cmp eax, 255
@@ -43,7 +46,7 @@ loopConversion:
 
 store:
     cmp eax, 0
-    jge .write
+    jge write
     xor eax, eax
 
 write:

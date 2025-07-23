@@ -130,8 +130,10 @@
     <CustomBuild Include="grayscaleCvt.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c:\NASM\nasm -f win64 grayscaleCvt.asm</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">c:\NASM\nasm -f win64 grayscaleCvt.asm </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">grayscaleCvt.obj</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </AdditionalInputs>
     </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
