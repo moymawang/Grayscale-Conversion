@@ -11,7 +11,7 @@ The conversion is done using the formula: float / int = 1 / 255 → int = float 
 ## Features
 
 - Input image dimensions and float-based pixel values manually
-- Scalar SIMD conversion using `XMM` registers (`mulss`, `cvtss2si`)
+- Scalar SIMD conversion using `XMM` registers (`mulss`, `cvttss2si`)
 - Automatic clamping to ensure values remain within `uint8_t` range
 - Neatly formatted image output in the terminal
 - Dynamically allocates memory for image storage
