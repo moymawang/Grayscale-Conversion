@@ -6,8 +6,6 @@ This project demonstrates the conversion of grayscale images represented as floa
 
 The conversion is done using the formula: float / int = 1 / 255 → int = float * 255
 
----
-
 ## Features
 
 - Input image dimensions and float-based pixel values manually
