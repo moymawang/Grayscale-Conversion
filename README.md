@@ -8,8 +8,6 @@ The conversion is done using the formula: float / int = 1 / 255 → int = float 
 
 ---
 
-Assembly SIMD scalar instructions are used to efficiently convert pixel values, clamp them between 0 and 255, and store the result.
-
 ## Features
 
 - Input image dimensions and float-based pixel values manually
