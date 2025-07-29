@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <windows.h>
 
 // assembly function
 extern void imgCvtGrayFloatToInt(float *inputImage, uint8_t *outputImage, int width, int height);
@@ -85,10 +86,19 @@ int main() {
         return 1;
     }
 
+     // Benchmark timing using <windows.h>
+    LARGE_INTEGER frequency, start, end;
+    QueryPerformanceFrequency(&frequency);
+    QueryPerformanceCounter(&start);
+    // Call the assembly function to convert float to uint8_t
     imgCvtGrayFloatToInt(inputImage, outputImage, width, height);
+    QueryPerformanceCounter(&end);  // end time
+
+    double elapsed = (double)(end.QuadPart - start.QuadPart) * 1000.0 / frequency.QuadPart;
 
     printf("Output Integer Values:\n");
     printImage(outputImage, width, height);
+    printf("Benchmark: Conversion took %.6f seconds.\n", elapsed);
 
     free(inputImage);
     free(outputImage);
