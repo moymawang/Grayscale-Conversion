@@ -18,45 +18,40 @@ The conversion is done using the formula: float / int = 1 / 255 → int = float 
 # Requirements
 
 ## i. Execution Time and Short Analysis of the Performance
---- Timing 10x10 image (100 pixels) ---
+
+### Benchmark Results
+
+The assembly function `imgCvtGrayFloatToInt` was tested with three different image sizes, running 30 iterations each to ensure statistical reliability. Below are the detailed timing results:
+
+#### Small Image (10x10 - 100 pixels)
+```
 Memory allocated: 0.00 MB
-Ran 30 iterations.
-Image Size: 10x10 (100 pixels)
-Iterations: 30
-Total Time: 0.000005 seconds
 Average Time: 0.000000180 seconds (0.000180 ms)
 Min Time: 0.000000100 seconds (0.000100 ms)
 Max Time: 0.000000200 seconds (0.000200 ms)
 Time per pixel: 1.800 nanoseconds
-Throughput: 555555556 pixels/second
 Throughput: 555.556 megapixels/second
+```
 
-
---- Timing 100x100 image (10000 pixels) ---
+#### Medium Image (100x100 - 10,000 pixels)
+```
 Memory allocated: 0.05 MB
-Ran 30 iterations
-Image Size: 100x100 (10000 pixels)
-Iterations: 30
-Total Time: 0.000443 seconds
 Average Time: 0.000014770 seconds (0.014770 ms)
 Min Time: 0.000014300 seconds (0.014300 ms)
 Max Time: 0.000021600 seconds (0.021600 ms)
 Time per pixel: 1.477 nanoseconds
-Throughput: 677048070 pixels/second
 Throughput: 677.048 megapixels/second
+```
 
---- Timing 1000x1000 image (1000000 pixels) ---
+#### Large Image (1000x1000 - 1,000,000 pixels)
+```
 Memory allocated: 4.77 MB
-Ran 30 iterations
-Image Size: 1000x1000 (1000000 pixels)
-Iterations: 30
-Total Time: 0.054816 seconds
 Average Time: 0.001827197 seconds (1.827197 ms)
 Min Time: 0.001438600 seconds (1.438600 ms)
 Max Time: 0.004272400 seconds (4.272400 ms)
 Time per pixel: 1.827 nanoseconds
-Throughput: 547286463 pixels/second
 Throughput: 547.286 megapixels/second
+```
 
 **Analysis:**
 
