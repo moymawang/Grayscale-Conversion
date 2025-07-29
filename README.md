@@ -20,9 +20,7 @@ The conversion is done using the formula: float / int = 1 / 255 → int = float 
 ## i. Execution Time and Short Analysis of the Performance
 --- Timing 10x10 image (100 pixels) ---
 Memory allocated: 0.00 MB
-Ran 30 iterations...
-
-=== TIMING RESULTS ===
+Ran 30 iterations.
 Image Size: 10x10 (100 pixels)
 Iterations: 30
 Total Time: 0.000005 seconds
@@ -32,16 +30,11 @@ Max Time: 0.000000200 seconds (0.000200 ms)
 Time per pixel: 1.800 nanoseconds
 Throughput: 555555556 pixels/second
 Throughput: 555.556 megapixels/second
-======================
+
 
 --- Timing 100x100 image (10000 pixels) ---
 Memory allocated: 0.05 MB
-Running 30 iterations...
-  Completed 10/30 iterations
-  Completed 20/30 iterations
-  Completed 30/30 iterations
-
-=== TIMING RESULTS ===
+Ran 30 iterations
 Image Size: 100x100 (10000 pixels)
 Iterations: 30
 Total Time: 0.000443 seconds
@@ -51,16 +44,10 @@ Max Time: 0.000021600 seconds (0.021600 ms)
 Time per pixel: 1.477 nanoseconds
 Throughput: 677048070 pixels/second
 Throughput: 677.048 megapixels/second
-======================
 
 --- Timing 1000x1000 image (1000000 pixels) ---
 Memory allocated: 4.77 MB
-Running 30 iterations...
-  Completed 10/30 iterations
-  Completed 20/30 iterations
-  Completed 30/30 iterations
-
-=== TIMING RESULTS ===
+Ran 30 iterations
 Image Size: 1000x1000 (1000000 pixels)
 Iterations: 30
 Total Time: 0.054816 seconds
@@ -70,10 +57,8 @@ Max Time: 0.004272400 seconds (4.272400 ms)
 Time per pixel: 1.827 nanoseconds
 Throughput: 547286463 pixels/second
 Throughput: 547.286 megapixels/second
-======================
+
 **Analysis:**
-=== SUMMARY REPORT ===
-Successfully tested 3 out of 3 image sizes
 
 Performance Summary:
 - 10x10: 0.000180 ms (555.556 MP/s)
