@@ -145,7 +145,7 @@ Enter 1 rows of 4 comma-separated float values (row per row):
 ```
 Output Integer Values:
 84, 170, 29, 220
-Benchmark: Conversion took 0.000001 seconds.
+Benchmark: Conversion took 0.000300 seconds.
 ```
 
 **Correctness Verification:**
@@ -153,14 +153,6 @@ Benchmark: Conversion took 0.000001 seconds.
 - `0.666667 × 255 ≈ 170.000` → `170` ✓
 - `0.117647 × 255 ≈ 29.999` → `29` (truncated) ✓
 - `0.862745 × 255 ≈ 220.000` → `220` ✓
-
-### Key Validation Points
-
-✅ **Formula Implementation**: Correctly applies `int = float × 255`  
-✅ **Range Clamping**: Values > 1.0 clamped to 255, values < 0.0 clamped to 0  
-✅ **Data Type Conversion**: Proper float-to-uint8_t conversion with **truncation** (`cvttss2si`)  
-✅ **Memory Layout**: Correct row-major order output formatting  
-✅ **Performance**: Sub-microsecond execution times demonstrate assembly optimization 
 
 The assembly function successfully converts floating-point grayscale values to 8-bit integers with proper bounds checking and maintains excellent performance across different image sizes.
 
