@@ -19,6 +19,23 @@ The conversion is done using the formula: float / int = 1 / 255 → int = float 
 
 ## i. Execution Time and Short Analysis of the Performance
 
+### Compilation Steps
+
+1. **Assemble the assembly file:**
+   ```bash
+   nasm -f win64 grayscaleCvt.asm -o grayscaleCvt.obj
+   ```
+
+2. **Compile main program:**
+   ```bash
+   gcc -o main main.c grayscaleCvt.obj
+   ```
+
+3. **Compile benchmark program:**
+   ```bash
+   gcc -o benchmarkASM benchmarkASM.c grayscaleCvt.obj
+   ```
+
 ### Benchmark Results
 
 The assembly function `imgCvtGrayFloatToInt` was tested with three different image sizes, running 30 iterations each to ensure statistical reliability. Below are the detailed timing results:
@@ -88,15 +105,15 @@ Enter 2 rows of 2 comma-separated float values (row per row):
 ```
 Output Integer Values:
 0, 255
-128, 64
-Benchmark: Conversion took 0.000200 seconds.
+127, 63
+Benchmark: Conversion took 0.000300 seconds.
 ```
 
 **Correctness Verification:**
 - `0.0 × 255 = 0` ✓
 - `1.0 × 255 = 255` ✓
-- `0.5 × 255 = 127.5` → `128` (rounded) ✓
-- `0.25 × 255 = 63.75` → `64` (rounded) ✓
+- `0.5 × 255 = 127.5` → `127` (truncated) ✓
+- `0.25 × 255 = 63.75` → `63` (truncated) ✓
 
 ### Test Case 2: Edge Cases with Clamping (3x3 Image)
 
@@ -114,22 +131,22 @@ Enter 3 rows of 3 comma-separated float values (row per row):
 **Output:**
 ```
 Output Integer Values:
-0, 26, 51
-128, 230, 255
-255, 0, 1
-Benchmark: Conversion took 0.000300 seconds.
+0, 25, 51
+127, 229, 255
+255, 0, 0
+Benchmark: Conversion took 0.000200 seconds.
 ```
 
 **Correctness Verification:**
 - `0.0 × 255 = 0` ✓
-- `0.1 × 255 = 25.5` → `26` ✓
+- `0.1 × 255 = 25.5` → `25` (truncated) ✓
 - `0.2 × 255 = 51` ✓
-- `0.5 × 255 = 127.5` → `128` ✓
-- `0.9 × 255 = 229.5` → `230` ✓
+- `0.5 × 255 = 127.5` → `127` (truncated) ✓
+- `0.9 × 255 = 229.5` → `229` (truncated) ✓
 - `1.0 × 255 = 255` ✓
 - `1.5 × 255 = 382.5` → **Clamped to 255** ✓
 - `-0.1 × 255 = -25.5` → **Clamped to 0** ✓
-- `0.003921 × 255 ≈ 1.0` → `1` ✓
+- `0.003921 × 255 ≈ 0.999` → `0` (truncated) ✓
 
 ### Test Case 3: Precision Test (1x4 Image)
 
@@ -145,29 +162,21 @@ Enter 1 rows of 4 comma-separated float values (row per row):
 **Output:**
 ```
 Output Integer Values:
-85, 170, 30, 220
-Benchmark: Conversion took 0.000100 seconds.
+84, 170, 29, 219
+Benchmark: Conversion took 0.000001 seconds.
 ```
 
 **Correctness Verification:**
-- `0.333333 × 255 ≈ 85.0` → `85` (1/3 of 255) ✓
-- `0.666667 × 255 ≈ 170.0` → `170` (2/3 of 255) ✓
-- `0.117647 × 255 ≈ 30.0` → `30` (30/255) ✓
-- `0.862745 × 255 ≈ 220.0` → `220` (220/255) ✓
-
-### Key Validation Points
-
-✅ **Formula Implementation**: Correctly applies `int = float × 255`  
-✅ **Range Clamping**: Values > 1.0 clamped to 255, values < 0.0 clamped to 0  
-✅ **Data Type Conversion**: Proper float-to-uint8_t conversion with truncation  
-✅ **Memory Layout**: Correct row-major order output formatting  
-✅ **Performance**: Sub-microsecond execution times demonstrate assembly optimization  
+- `0.333333 × 255 ≈ 84.999` → `84` (truncated) ✓
+- `0.666667 × 255 ≈ 170.000` → `170` ✓
+- `0.117647 × 255 ≈ 29.999` → `29` (truncated) ✓
+- `0.862745 × 255 ≈ 219.999` → `219` (truncated) ✓
 
 The assembly function successfully converts floating-point grayscale values to 8-bit integers with proper bounds checking and maintains excellent performance across different image sizes.
 
 ## iii. Short Video Demonstration (5–10 minutes)
 
-[Watch Demo Video](https://insert link)
+[Watch Demo Video](https://drive.google.com/file/d/1RCDSefbiPkPSYptyiW32pE-FTaewaS2t/view?usp=sharing)
 
 The video includes:
 - Overview of the C and ASM source code

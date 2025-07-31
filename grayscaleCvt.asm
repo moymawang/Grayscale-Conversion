@@ -37,7 +37,7 @@ loopConversion:
     ; Load float pixel into xmm0
     movss xmm0, dword [rsi]
     mulss xmm0, xmm1              ; xmm0 = pixel * 255.0
-    cvtss2si eax, xmm0            ; eax = (int)(pixel * 255.0) + rounding
+    cvttss2si eax, xmm0            ; eax = (int)(pixel * 255.0) + truncation
 
     ; Clamp to [0, 255]
     cmp eax, 255
